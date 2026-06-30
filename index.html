@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Equipos de Prueba Eléctrica EXIM Honduras</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --naranja: #E8540A;
+    --naranja-oscuro: #B83D00;
+    --naranja-claro: #FF6B1A;
+    --acero: #1C2B3A;
+    --acero-medio: #2E4057;
+    --gris-claro: #F4F1EC;
+    --gris-medio: #D8D2C8;
+    --amarillo: #F5A623;
+    --blanco: #FEFEFE;
+    --texto: #1A1A1A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--gris-claro);
+    color: var(--texto);
+  }
+
+  /* HEADER INTEGRADO */
+  .header {
+    background: var(--acero);
+    color: var(--blanco);
+    position: relative;
+    overflow: hidden;
+  }
+  @media (min-width: 768px) {
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 42%;
+      height: 100%;
+      background: var(--naranja);
+      clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
+      z-index: 1;
+    }
+  }
+  .header-inner {
+    position: relative;
+    z-index: 2;
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  @media (min-width: 768px) {
+    .header-inner {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 40px;
+      padding: 32px 40px;
+    }
+  }
+
+  /* Lado izquierdo (Azul) */
+  .header-left {
+    flex: 1;
+  }
+  .brand-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .header-logo {
+    max-height: 148px;
+    width: auto;
+    background: rgba(255, 255, 255, 0.9); /* Fondo claro para proteger visibilidad del logo */
+    padding: 4px 10px;
+    border-radius: 4px;
+    display: block;
+  }
+  .header-badge {
+    display: inline-block;
+    background: var(--amarillo);
+    color: var(--acero);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+  }
+  .header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 34px;
+    line-height: 1.1;
+    color: var(--blanco);
+    letter-spacing: 1px;
+  }
+  @media (min-width: 768px) {
+    .header h1 {
+      font-size: 48px;
+      max-width: 90%;
+    }
+  }
+  .header-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.70);
+    margin-top: 8px;
+    font-weight: 400;
+  }
+
+  /* Lado derecho (Naranja / Corporativo) */
+  .header-right {
+    width: 100%;
+  }
+  @media (min-width: 768px) {
+    .header-right {
+      width: 36%;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+  .corp-box {
+    background: var(--naranja); /* Fondo naranja en móvil */
+    padding: 16px;
+    border-left: 4px solid var(--amarillo);
+    color: var(--blanco);
+  }
+  @media (min-width: 768px) {
+    .corp-box {
+      background: transparent; /* Transparente en escritorio para heredar el clip-path */
+      border-left: none;
+      padding: 0;
+      color: var(--acero); /* Texto oscuro para legibilidad sobre el fondo naranja */
+    }
+  }
+  .corp-box h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  @media (min-width: 768px) {
+    .corp-box h2 {
+      color: var(--acero);
+    }
+  }
+  .corp-addr {
+    font-size: 11px;
+    line-height: 1.4;
+    margin-bottom: 10px;
+    opacity: 0.9;
+  }
+  @media (min-width: 768px) {
+    .corp-addr {
+      color: rgba(28, 43, 58, 0.85);
+    }
+  }
+  .corp-items {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 11px;
+  }
+  .corp-items span {
+    display: block;
+  }
+
+  .header-icon {
+    position: absolute;
+    right: 20px;
+    bottom: 16px;
+    font-size: 60px;
+    opacity: 0.08;
+    color: var(--blanco);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--naranja);
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .stats-bar::-webkit-scrollbar { display: none; }
+  .stat-item {
+    flex: 0 0 auto;
+    padding: 12px 20px;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.25);
+    min-width: 90px;
+  }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    color: var(--blanco);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 10px;
+    color: rgba(255,255,255,0.8);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 2px;
+  }
+
+  /* SEARCH / FILTER */
+  .filter-bar {
+    background: var(--blanco);
+    padding: 14px 16px;
+    border-bottom: 3px solid var(--naranja);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  }
+  .search-box {
+    display: flex;
+    align-items: center;
+    background: var(--gris-claro);
+    border: 1.5px solid var(--gris-medio);
+    padding: 8px 12px;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .search-box input {
+    border: none;
+    background: transparent;
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    width: 100%;
+    outline: none;
+    color: var(--texto);
+  }
+  .search-icon { color: var(--naranja); font-size: 16px; }
+
+  .filter-chips {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+  .filter-chips::-webkit-scrollbar { display: none; }
+  .chip {
+    flex: 0 0 auto;
+    padding: 5px 12px;
+    font-size: 12px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 1.5px solid var(--gris-medio);
+    background: var(--blanco);
+    color: var(--acero-medio);
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .chip.active {
+    background: var(--naranja);
+    color: var(--blanco);
+    border-color: var(--naranja);
+  }
+  .chip:hover:not(.active) {
+    border-color: var(--naranja);
+    color: var(--naranja);
+  }
+
+  /* GRID */
+  .equipo-grid {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .equipo-card {
+    background: var(--blanco);
+    border-left: 5px solid var(--naranja);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    transition: transform 0.15s, box-shadow 0.15s;
+    overflow: hidden;
+    animation: fadeIn 0.3s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .equipo-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(232,84,10,0.18);
+  }
+  .equipo-card.hidden { display: none; }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px 10px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .num-badge {
+    background: var(--acero);
+    color: var(--blanco);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .card-title-block { flex: 1; min-width: 0; }
+  .equipo-nombre {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--acero);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    line-height: 1.2;
+  }
+  .marca-model {
+    font-size: 12px;
+    color: var(--naranja);
+    font-weight: 600;
+    margin-top: 2px;
+  }
+  .expand-icon {
+    color: var(--naranja);
+    font-size: 20px;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  .equipo-card.open .expand-icon { transform: rotate(180deg); }
+
+  .card-body {
+    display: none;
+    border-top: 1px solid var(--gris-medio);
+  }
+  .equipo-card.open .card-body { display: block; }
+
+  .card-img-wrap {
+    background: var(--gris-claro);
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 120px;
+    border-bottom: 1px solid var(--gris-medio);
+  }
+  .card-img-wrap img {
+    max-height: 110px;
+    max-width: 100%;
+    object-fit: contain;
+  }
+  .img-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--gris-medio);
+  }
+  .img-placeholder span { font-size: 40px; }
+  .img-placeholder p { font-size: 12px; }
+
+  .card-content { padding: 14px 16px 16px; }
+
+  .categoria-badge {
+    display: inline-block;
+    background: var(--naranja);
+    color: var(--blanco);
+    font-size: 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    margin-bottom: 12px;
+  }
+
+  .funciones-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--naranja-oscuro);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .funciones-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .funciones-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--acero-medio);
+    line-height: 1.4;
+    padding: 4px 8px;
+    background: var(--gris-claro);
+  }
+  .funciones-list li::before {
+    content: '⚡';
+    font-size: 11px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .spec-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .spec-item {
+    background: var(--acero);
+    padding: 8px 10px;
+    color: var(--blanco);
+  }
+  .spec-key {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: rgba(255,255,255,0.6);
+  }
+  .spec-val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--amarillo);
+    margin-top: 2px;
+  }
+
+  /* SECTION DIVIDERS */
+  .section-div {
+    background: var(--acero-medio);
+    color: var(--blanco);
+    padding: 8px 16px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-div::before {
+    content: '';
+    width: 4px;
+    height: 20px;
+    background: var(--naranja);
+    flex-shrink: 0;
+  }
+
+  /* INFO SECTION */
+  .info-section {
+    margin: 16px;
+    background: var(--acero);
+    padding: 20px 16px;
+    color: var(--blanco);
+    position: relative;
+    overflow: hidden;
+  }
+  .info-section::after {
+    content: '⚡';
+    position: absolute;
+    right: 12px;
+    bottom: 10px;
+    font-size: 60px;
+    opacity: 0.06;
+  }
+  .info-section h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: var(--naranja-claro);
+    margin-bottom: 10px;
+  }
+  .info-section p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 8px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--acero);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 20px 16px;
+    font-size: 12px;
+    border-top: 3px solid var(--naranja);
+  }
+  footer strong {
+    color: var(--naranja);
+    display: block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+
+  /* RESULTADOS */
+  .no-results {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--gris-medio);
+    display: none;
+  }
+  .no-results.show { display: block; }
+  .no-results span { font-size: 48px; display: block; margin-bottom: 12px; }
+  .no-results p { font-size: 14px; }
+
+  @media (min-width: 600px) {
+    .equipo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      padding: 20px;
+    }
+    .section-div { grid-column: 1 / -1; }
+    .info-section { margin: 0 20px 20px; }
+  }
+
+  @media (min-width: 900px) {
+    .equipo-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    
+    <!-- Lado izquierdo: Logo y Títulos -->
+    <div class="header-left">
+      <div class="brand-row">
+        <!-- El contenedor tiene un leve fondo claro para asegurar la visibilidad de logos oscuros o transparentes -->
+        <img src="logo.png" alt="Logo EXIM" class="header-logo" onerror="this.style.display='none';">
+		<h1>EXIM HONDURAS S DE R.L</h1>
+      </div>
+     
+      <p class="header-sub">Residencial Villa Florencia, Pablo bloque B casa 2, carretera a San Marcos, Choluteca, Honduras.</p>
+	   <p class="header-sub"><strong>Tele:</strong> +(504) 96557559</p>
+	    <p class="header-sub"><strong>RTN:</strong> 06019021246521</p>
+		<p class="header-sub"><strong>Correo:</strong> sales@eximh.com</p>
+		
+    </div>
+
+
+  </div>
+  <div class="header-icon">⚡</div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-num">16</div><div class="stat-label">Equipos</div></div>
+  <div class="stat-item"><div class="stat-num">10K</div><div class="stat-label">V máx aislam.</div></div>
+  <div class="stat-item"><div class="stat-num">500</div><div class="stat-label">KV detección</div></div>
+  <div class="stat-item"><div class="stat-num">60</div><div class="stat-label">KV aceite</div></div>
+  <div class="stat-item"><div class="stat-num">50</div><div class="stat-label">Armónicos</div></div>
+</div>
+
+<div class="filter-bar">
+  <div class="search-box">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="Buscar equipo, marca, modelo..." oninput="filtrar()">
+  </div>
+  <div class="filter-chips">
+    <div class="chip active" onclick="setChip(this,'todos')">Todos</div>
+    <div class="chip" onclick="setChip(this,'transformadores')">Transformadores</div>
+    <div class="chip" onclick="setChip(this,'aislamiento')">Aislamiento</div>
+    <div class="chip" onclick="setChip(this,'termografia')">Termografía</div>
+    <div class="chip" onclick="setChip(this,'tierra')">Resistencia tierra</div>
+    <div class="chip" onclick="setChip(this,'calidad')">Calidad energía</div>
+    <div class="chip" onclick="setChip(this,'ultrasonico')">Ultrasónico</div>
+  </div>
+</div>
+
+<div class="equipo-grid" id="equipoGrid">
+
+  <div class="section-div">Medición de Transformadores</div>
+
+  <!-- 1 -->
+  <div class="equipo-card" data-cat="transformadores" data-search="medidor radio vueltas transformador ttr vluuke lnbb2000 monofasico trifasico">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="num-badge">1</div>
+      <div class="card-title-block">
+        <div class="equipo-nombre">Medidor TTR de Transformador</div>
+        <div class="marca-model">VLUUKE · LNBB2000</div>
+      </div>
+      <div class="expand-icon">▾</div>
+    </div>
+    <div class="card-body">
+      <div class="card-img-wrap">
+        <div class="img-placeholder"><span>🔌</span><p>VLUUKE LNBB2000</p></div>
+      </div>
+      <div class="card-content">
+        <span class="categoria-badge">Transformadores</span>
+        <p class="funciones-title">Aplicaciones</p>
+        <ul class="funciones-list">
+          <li>Prueba TP para transformadores monofásico</li>
+          <li>Prueba para transformadores Trifásicos</li>
+          <li>Prueba TC para transformador monofásico</li>
+          <li>Prueba de transformadores tipo Z</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="equipo-card" data-cat="transformadores" data-search="medidor relacion transformadores alta tension etcr 9500b corriente fuga pararayo">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="num-badge">5</div>
+      <div class="card-title-block">
+        <div class="equipo-nombre">Medidor Relación Transformador AT</div>
+        <div class="marca-model">ETCR · 9500B</div>
+      </div>
+      <div class="expand-icon">▾</div>
+    </div>
+    <div class="card-body">
+      <div class="card-img-wrap">
+        <div class="img-placeholder"><span>⚡</span><p>ETCR 9500B</p></div>
+      </div>
+      <div class="card-content">
+        <span class="categoria-badge">Alta Tensión</span>
+        <p class="funciones-title">Capacidades</p>
+        <ul class="funciones-list">
+          <li>Medición de corriente hasta 5 A en baja tensión</li>
+          <li>Medición de corriente hasta 1000 A en alta tensión</li>
+          <li>Corriente de fuga 0.3 A a 50 A tierra</li>
+          <li>Corriente de fuga 0.1 mA a 299 mA Pararayo</li>
+        </ul>
+        <div class="spec-grid">
+          <div class="spec-item"><div class="spec-key">Baja tensión</div><div class="spec-val">5 A</div></div>
+          <div class="spec-item"><div class="spec-key">Alta tensión</div><div class="spec-val">1000 A</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9 -->
+  <div class="equipo-card" data-cat="transformadores" data-search="probador aceite bdv transformador huazheng hzjq-x1 ruptura dielectrica">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="num-badge">9</div>
+      <div class="card-title-block">
+        <div class="equipo-nombre">Probador de Aceite BDV</div>
+        <div class="marca-model">Huazheng · HZJQ-X1</div>
+      </div>
+      <div class="expand-icon">▾</div>
+    </div>
+    <div class="card-body">
+      <div class="card-img-wrap">
+        <div class="img-placeholder"><span>🛢️</span><p>Huazheng HZJQ-X1</p></div>
+      </div>
+      <div class="card-content">
+        <span class="categoria-badge">Transformadores</span>
+        <p class="funciones-title">Especificación</p>
+        <ul class="funciones-list">
+          <li>Prueba de voltaje de ruptura dieléctrica hasta 60 KV</li>
+          <li>Evalúa propiedades aislantes del aceite dieléctrico</li>
+        </ul>
+        <div class="spec-grid">
+          <div class="spec-item"><div class="spec-key">Voltaje ruptura</div><div class="spec-val">60 KV</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-div">Resistencia DC y Tierra</div>
+
+  <!-- 4 -->
+  <div class="equipo-card" data-cat="tierra" data-search="medidor resistencia dc fuzrr es3050 bobinas motores interruptores contactos">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="num-badge">4</div>
+      <div class="card-title-block">
+        <div class="equipo-nombre">Medidor de Resistencia DC</div>
+        <div class="marca-model">FUZRR · ES3050</div>
+      </div>
+      <div class="expand-icon">▾</div>
+    </div>
+    <div class="card-body">
+      <div class="card-img-wrap">
+        <div class="img-placeholder"><span>🔧</span><p>FUZRR ES3050</p></div>
+      </div>
+      <div class="card-content">
+        <span class="categoria-badge">Resistencia DC</span>
+        <p class="funciones-title">Aplicaciones</p>
+        <ul class="funciones-list">
+          <li>Método de prueba de 4 cables</li>
+          <li>Resistencia de bobinas de transformadores</li>
+          <li>Resistencia de bobinas de motores</li>
+          <li>Resistencia de contactos de interruptores</li>
+          <li>Resistencia de contactos de tierra</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="equipo-card" data-cat="tierra" data-search="medidor resistencia tierra abrazaderas etcr etcr2100a varillas aterrizaje">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="num-badge">3</div>
+      <div class="card-title-block">
+        <div class="equipo-nombre">Medidor Resistencia Tierra (Abrazadera)</div>
+        <div class="marca-model">ETCR · ETCR2100A</div>
+      </div>
+      <div class="expand-icon">▾</div>
+    </div>
+    <div class="card-body">
+      <div class="card-img-wrap">
+        <div class="img-placeholder"><span>🌍</span><p>ETCR 2100A</p></div>
+      </div>
+      <div class="card-content">
+        <span class="categoria-badge">Resistencia Tierra</span>
+        <p class="funciones-title">Aplicaciones</p>
+        <ul class="funciones-list">
+          <li>Medición en lugares difíciles para el método tradicional</li>
+          <li>Funcionamiento con múltiples varillas de aterrizaje</li>
+          <li>Sin necesidad de interrumpir el circuito</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 14 -->
+  <div class="equipo-card" data-cat="tierra" data-search="medidor resistencia tierra ebchq 96242 4 puntas telurómetro">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="num-badge">14</div>
+      <div class="card-title-block">
+        <div class="equipo-nombre">Medidor Resistencia de Tierra</div>
+        <div class="marca-model">EBCHQ · 96242</div>
+      </div>
+      <div class="expand-icon">▾</div>
+    </div>
+    <div class="card-body">
+      <div class="card-img-wrap">
+        <div class="img-placeholder"><span>🌍</span><p>EBCHQ 96242</p></div>
+      </div>
+      <div class="card-content">
+        <span class="categoria-badge">Resistencia Tierra</span>
+        <p class="funciones-title">Especificaciones</p>
+        <ul class="funciones-list">
+          <li>Rango de medición 0 a 200 Ω</li>
+          <li>Rango de voltaje hasta 300 V</li>
+          <li>Prueba de 4 puntas</li>
+        </ul>
+        <div class="spec-grid">
+          <div class="spec-item"><div class="spec-key">Rango</div><div class="spec-val">0–200 Ω</div></div>
+          <div class="spec-item"><div class="spec-key">Voltaje</div><div class="spec-val">300 V</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 16 -->
+  <div class="equipo-card" data-cat="tierra" data-search="medidor miliohmetro precision extech 380460 4 cables bobinas motores transformadores">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="num-badge">16</div>
+      <div class="card-title-block">
+        <div class="equipo-nombre">Miliohmímetro de Precisión</div>
+        <div class="marca-model">Extech · 380460</div>
+      </div>
+      <div class="expand-icon">▾</div>
+    </div>
+    <div class="card-body">
+      <div class="card-img-wrap">
+        <div class="img-placeholder"><span>🔩</span><p>Extech 380460</p></div>
+      </div>
+      <div class="card-content">
+        <span class="categoria-badge">Resistencia DC</span>
+        <p class="funciones-title">Aplicaciones</p>
+        <ul class="funciones-list">
+          <li>Método de prueba de 4 cables</li>
+          <li>Bobinas de transformadores y motores</li>
+          <li>Contactos de interruptores y tierra</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-div">Aislamiento de Alto Voltaje</div>
+
+  <!-- 6 -->
+  <div class="equipo-card" data-cat="aislamiento" data-search="indicador medidor alto voltaje hde dvi-500t 500kv audible">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="num-badge">6</div>
+      <div class="card-title-block">
+        <div class="equipo-nombre">Indicador/Medidor de Alto Voltaje</div>
+        <div class="marca-model">HDE · DVI-500T</div>
+      </div>
+      <div class="expand-icon">▾</div>
+    </div>
+    <div class="card-body">
+      <div class="card-img-wrap">
+        <div class="img-placeholder"><span>⚠️</span><p>HDE DVI-500T</p></div>
+      </div>
+      <div class="card-content">
+        <span class="categoria-badge">Alta Tensión</span>
+        <p class="funciones-title">Características</p>
+        <ul class="funciones-list">
+          <li>Capacidad de detección hasta 500 KV (línea a tierra)</li>
+          <li>Indicación audible cuando se detecta voltaje</li>
+        </ul>
+        <div class="spec-grid">
+          <div class="spec-item"><div class="spec-key">Capacidad</div><div class="spec-val">500 KV</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="equipo-card" data-cat="aislamiento" data-search="comprobador aislamiento alto voltaje 5000v kyoritso kew3127 dar pi polarizacion rampa descarga dielectrica">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="num-badge">7</div>
+      <div class="card-title-block">
+        <div class="equipo-nombre">Comprobador Aislamiento 5,000 V</div>
+        <div class="marca-model">Kyoritsuo · KEW3127</div>
+      </div>
+      <div class="expand-icon">▾</div>
+    </div>
+    <div class="card-body">
+      <div class="card-img-wrap">
+        <div class="img-placeholder"><span>🔬</span><p>Kyoritsuo KEW3127</p></div>
+      </div>
+      <div class="card-content">
+        <span class="categoria-badge">Aislamiento 5KV</span>
+        <p class="funciones-title">Modos de medición</p>
+        <ul class="funciones-list">
+          <li>DAR — Índice de absorción dieléctrico</li>
+          <li>IR — Resistencia en 60 segundos</li>
+          <li>PI — Índice de polarización</li>
+          <li>Medición en pasos (5 pasos)</li>
+          <li>Medición en rampa</li>
+          <li>DD — Descarga dieléctrica</li>
+        </ul>
+        <div class="spec-grid">
+          <div class="spec-item"><div class="spec-key">Voltaje máx</div><div class="spec-val">5,000 V</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8 -->
+  <div class="equipo-card" data-cat="aislamiento" data-search="comprobador aislamiento alto voltaje 10000v etcr 3500b dar pi polarizacion rampa">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="num-badge">8</div>
+      <div class="card-title-block">
+        <div class="equipo-nombre">Comprobador Aislamiento 10,000 V</div>
+        <div class="marca-model">ETCR · 3500B</div>
+      </div>
+      <div class="expand-icon">▾</div>
+    </div>
+    <div class="card-body">
+      <div class="card-img-wrap">
+        <div class="img-placeholder"><span>🔬</span><p>ETCR 3500B</p></div>
+      </div>
+      <div class="card-content">
+        <span class="categoria-badge">Aislamiento 10KV</span>
+        <p class="funciones-title">Modos de medición</p>
+        <ul class="funciones-list">
+          <li>DAR — Índice de absorción dieléctrico</li>
+          <li>IR — Resistencia en 60 segundos</li>
+          <li>PI — Índice de polarización</li>
+          <li>Medición en pasos (5 pasos)</li>
+          <li>Medición en rampa</li>
+        </ul>
+        <div class="spec-grid">
+          <div class="spec-item"><div class="spec-key">Voltaje máx</div><div class="spec-val">10,000 V</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-div">Termografía</div>
+
+  <!-- 2 -->
+  <div class="equipo-card" data-cat="termografia" data-search="camara termografica testo 870 puntos calientes electricos refrigeracion calderas">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="num-badge">2</div>
+      <div class="card-title-block">
+        <div class="equipo-nombre">Cámara Termográfica</div>
+        <div class="marca-model">TESTO · 870</div>
+      </div>
+      <div class="expand-icon">▾</div>
+    </div>
+    <div class="card-body">
+      <div class="card-img-wrap">
+        <div class="img-placeholder"><span>🌡️</span><p>TESTO 870</p></div>
+      </div>
+      <div class="card-content">
+        <span class="categoria-badge">Termografía</span>
+        <p class="funciones-title">Aplicaciones</p>
+        <ul class="funciones-list">
+          <li>Detección de puntos calientes en sistemas eléctricos</li>
+          <li>Prueba de aislamiento en sistemas de refrigeración</li>
+          <li>Prueba de sistemas mecánicos y calderas</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 15 -->
+  <div class="equipo-card" data-cat="termografia" data-search="camara termografica flir e6 puntos calientes electricos refrigeracion calderas">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="num-badge">15</div>
+      <div class="card-title-block">
+        <div class="equipo-nombre">Cámara Termográfica</div>
+        <div class="marca-model">FLIR · E6</div>
+      </div>
+      <div class="expand-icon">▾</div>
+    </div>
+    <div class="card-body">
+      <div class="card-img-wrap">
+        <div class="img-placeholder"><span>🌡️</span><p>FLIR E6</p></div>
+      </div>
+      <div class="card-content">
+        <span class="categoria-badge">Termografía</span>
+        <p class="funciones-title">Aplicaciones</p>
+        <ul class="funciones-list">
+          <li>Detección de puntos calientes en sistemas eléctricos</li>
+          <li>Prueba de aislamiento en sistemas de refrigeración</li>
+          <li>Prueba de sistemas mecánicos y calderas</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-div">Calidad de Energía</div>
+
+  <!-- 10 -->
+  <div class="equipo-card" data-cat="calidad" data-search="analizador calidad energia kyoritsuo kew 6315 voltaje corriente potencia harmonicos disturbios">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="num-badge">10</div>
+      <div class="card-title-block">
+        <div class="equipo-nombre">Analizador de Calidad de Energía</div>
+        <div class="marca-model">Kyoritsuo · KEW 6315</div>
+      </div>
+      <div class="expand-icon">▾</div>
+    </div>
+    <div class="card-body">
+      <div class="card-img-wrap">
+        <div class="img-placeholder"><span>📊</span><p>Kyoritsuo KEW 6315</p></div>
+      </div>
+      <div class="card-content">
+        <span class="categoria-badge">Calidad Energía</span>
+        <p class="funciones-title">Parámetros medidos</p>
+        <ul class="funciones-list">
+          <li>Voltaje y corriente</li>
+          <li>Potencia y energía</li>
+          <li>Disturbios eléctricos</li>
+          <li>Armónicos hasta la 50ª</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11 -->
+  <div class="equipo-card" data-cat="calidad" data-search="analizador calidad energia extech pq3450 voltaje corriente potencia harmonicos disturbios">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="num-badge">11</div>
+      <div class="card-title-block">
+        <div class="equipo-nombre">Analizador de Calidad de Energía</div>
+        <div class="marca-model">Extech · PQ3450</div>
+      </div>
+      <div class="expand-icon">▾</div>
+    </div>
+    <div class="card-body">
+      <div class="card-img-wrap">
+        <div class="img-placeholder"><span>📊</span><p>Extech PQ3450</p></div>
+      </div>
+      <div class="card-content">
+        <span class="categoria-badge">Calidad Energía</span>
+        <p class="funciones-title">Parámetros medidos</p>
+        <ul class="funciones-list">
+          <li>Voltaje y corriente</li>
+          <li>Potencia y energía</li>
+          <li>Disturbios eléctricos</li>
+          <li>Armónicos hasta la 50ª</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12 -->
+  <div class="equipo-card" data-cat="calidad" data-search="analizador calidad energia pqube3 psl power standar voltaje corriente potencia harmonicos">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="num-badge">12</div>
+      <div class="card-title-block">
+        <div class="equipo-nombre">Analizador de Calidad de Energía</div>
+        <div class="marca-model">PSL Power Standar · PQube3</div>
+      </div>
+      <div class="expand-icon">▾</div>
+    </div>
+    <div class="card-body">
+      <div class="card-img-wrap">
+        <div class="img-placeholder"><span>📊</span><p>PQube3</p></div>
+      </div>
+      <div class="card-content">
+        <span class="categoria-badge">Calidad Energía</span>
+        <p class="funciones-title">Parámetros medidos</p>
+        <ul class="funciones-list">
+          <li>Voltaje y corriente</li>
+          <li>Potencia y energía</li>
+          <li>Disturbios eléctricos</li>
+          <li>Armónicos hasta la 50ª</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-div">Diagnóstico Ultrasónico</div>
+
+  <!-- 13 -->
+  <div class="equipo-card" data-cat="ultrasonico" data-search="analizador ultrasonico sdt sdt270 descargas parciales fujas presion corona">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="num-badge">13</div>
+      <div class="card-title-block">
+        <div class="equipo-nombre">Analizador Ultrasónico</div>
+        <div class="marca-model">SDT · SDT270</div>
+      </div>
+      <div class="expand-icon">▾</div>
+    </div>
+    <div class="card-body">
+      <div class="card-img-wrap">
+        <div class="img-placeholder"><span>🔊</span><p>SDT SDT270</p></div>
+      </div>
+      <div class="card-content">
+        <span class="categoria-badge">Ultrasónico</span>
+        <p class="funciones-title">Detección de fallas</p>
+        <ul class="funciones-list">
+          <li>Descargas parciales eléctricas</li>
+          <li>Fugas de presiones positivas y negativas</li>
+          <li>Efecto corona</li>
+          <li>No requiere abrir los equipos</li>
+          <li>Aplicable en alta y baja tensión</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="no-results" id="noResults">
+  <span>🔍</span>
+  <p>No se encontraron equipos con ese criterio.</p>
+</div>
+
+<div class="info-section">
+  <h3>¿Por qué realizar pruebas eléctricas?</h3>
+  <p>La medición de resistencia de aislamiento permite evaluar la eficacia del aislamiento en sistemas eléctricos. Un aislamiento deficiente puede causar corrientes de fuga, incendios o electrocuciones.</p>
+  <p>Las pruebas de alta tensión son esenciales para garantizar la seguridad, fiabilidad y cumplimiento de normas en equipos que operan a niveles elevados de tensión.</p>
+  <p>La medición de calidad de energía garantiza un suministro estable y eficiente, protegiendo equipos y optimizando costos operativos.</p>
+</div>
+
+<footer>
+  <strong>Equipos de Prueba Eléctrica</strong>
+  Baja tensión · Alta tensión · Diagnóstico Industrial
+  <div style="margin-top: 14px; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 14px;">
+    <p style="color: var(--naranja-claro); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px;">Acerca de</p>
+    <p style="color: rgba(255,255,255,0.75); font-size: 13px; line-height: 1.6;">
+      Diseño y desarrollo por <span style="color: var(--blanco); font-weight: 600;">Fernando J. Pacheco</span> e <span style="color: var(--blanco); font-weight: 600;">Ing. Guillermo Bardales</span>
+    </p>
+  </div>
+</footer>
+
+<script>
+  let categoriaActual = 'todos';
+
+  function toggle(header) {
+    const card = header.parentElement;
+    card.classList.toggle('open');
+  }
+
+  function setChip(el, cat) {
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    categoriaActual = cat;
+    filtrar();
+  }
+
+  function filtrar() {
+    const q = document.getElementById('searchInput').value.toLowerCase().trim();
+    const cards = document.querySelectorAll('.equipo-card');
+    let visible = 0;
+
+    cards.forEach(card => {
+      const cat = card.dataset.cat || '';
+      const search = (card.dataset.search || '') + ' ' + (card.querySelector('.equipo-nombre')?.textContent || '').toLowerCase();
+      const matchCat = categoriaActual === 'todos' || cat === categoriaActual;
+      const matchQ = !q || search.includes(q);
+
+      if (matchCat && matchQ) {
+        card.classList.remove('hidden');
+        visible++;
+      } else {
+        card.classList.add('hidden');
+        card.classList.remove('open');
+      }
+    });
+
+    const divs = document.querySelectorAll('.section-div');
+    divs.forEach(div => {
+      let next = div.nextElementSibling;
+      let hasVisible = false;
+      while (next && !next.classList.contains('section-div')) {
+        if (!next.classList.contains('hidden')) hasVisible = true;
+        next = next.nextElementSibling;
+      }
+      div.style.display = hasVisible ? '' : 'none';
+    });
+
+    document.getElementById('noResults').classList.toggle('show', visible === 0);
+  }
+</script>
+</body>
+</html>
